@@ -4,10 +4,13 @@ const io = require( 'socket.io' )( 8000,{
         origin:["https://cat-chat-app-by-meow.netlify.app"],
     },
 } )
+console.log("suraj")
 const users = {};
 io.on( 'connection', socket => {
+    console.log("suraj1")
     socket.on( 'new-user-joined', names => {    
         users[ socket.id ] = names;
+        
         socket.broadcast.emit( 'user-joined', names );
     } );
     socket.on( 'send', message => {
